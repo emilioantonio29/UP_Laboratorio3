@@ -6,16 +6,25 @@
 #include "../headers/globals.h"
 #include "../headers/key.h"
 #include "../headers/semaforo.h"
-#include "../headers/randomNumbers.h"
+#include "../headers/control.h"
 
 int main() {
-    while (1) { // Bucle while infinito
-        int numero;
-        int numeroPanel;
-        char cadena[100]; // Aquí se almacenará la cadena, se asume un máximo de 100 caracteres
-        int id_semaforo;
-        FILE *productor; 
 
+    int numero;
+    int numeroPanel;
+    char cadena[100]; // Aquí se almacenará la cadena, se asume un máximo de 100 caracteres
+    int id_semaforo;
+    FILE *productor; 
+
+    id_semaforo =  creo_semaforo();
+	inicia_semaforo(id_semaforo, VERDE);
+    espera_semaforo(id_semaforo);
+
+    escribirPaneles();
+
+    levanta_semaforo(id_semaforo);
+
+    while (1) { // Bucle while infinito
 
         // Solicitar un número al usuario
         printf("Ingresa un número (o 0 para salir): ");
@@ -32,7 +41,6 @@ int main() {
 
             	id_semaforo =  creo_semaforo();
 	            inicia_semaforo(id_semaforo, VERDE);
-                espera_semaforo(id_semaforo);
                 espera_semaforo(id_semaforo);
                     
                     // productor = fopen("panel.dat", "a");
@@ -64,22 +72,34 @@ int main() {
 
             printf("Ingresa un numero de panel: ");
             scanf("%d", &numeroPanel);
-            // while (numeroPanel < 1 && numeroPanel > 3)
-            // {
-                
-            //     printf("Ingresa un numero de panel: ");
-            //     scanf("%d", &numeroPanel);
-
-            //     if(numeroPanel < 1 && numeroPanel > 3){
-            //         printf("Por favor ingresa un numero de panel valido, 1, 2 o 3");
-            //     }
-
-            // }
-            
-            // Si el número es igual a dos, solicitar una cadena al usuario
-            printf("Ingresa una cadena de caracteres: ");
+            printf("El panel seleccionado es: %d\n", numeroPanel);
+            printf("Ingresa una cadena de caracteres para el panel seleccionado: ");
             scanf(" %[^\n]", cadena); // Usamos %[^\n] para leer toda la línea como una cadena
-            printf("La cadena ingresada es: %s\n", cadena);
+
+            id_semaforo =  creo_semaforo();
+	        inicia_semaforo(id_semaforo, VERDE);
+            espera_semaforo(id_semaforo);
+
+            productor = fopen("panel.txt", "r+");
+
+            if (productor!=NULL)
+            {
+
+                if (numeroPanel > 1 || numeroPanel < 3) {
+
+                    sobreescribirLinea(productor, numeroPanel, cadena);
+
+                }else{
+                    printf("Numero de panel Invalido.\n");
+                }
+
+            }
+            else
+            {
+                perror ("Error al abrir cajero1.dat");
+            }
+
+            levanta_semaforo(id_semaforo);
 
         } else {
             printf("Opcion invalida. Presiona 1 para leer el panel, 2 para escribir en el panel o 0 para salir.\n");
