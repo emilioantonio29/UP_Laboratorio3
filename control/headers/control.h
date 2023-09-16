@@ -2,10 +2,15 @@
 #define _CONTROL
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 void escribirPaneles();
 
-void sobreescribirLinea(FILE *archivo, int linea, const char *mensaje);
+void leerArchivo(char *array[]);
+
+void reemplazarTexto(char *array[], int posicion, const char *texto);
+
+void escribirArchivo(char *array[]);
 
 #endif

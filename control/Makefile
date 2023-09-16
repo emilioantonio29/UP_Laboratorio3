@@ -2,7 +2,7 @@
 CC = gcc
 
 # Opciones de compilación
-CFLAGS = -Wall
+CFLAGS = -Wall -pedantic-errors -O3 -std=gnu89
 
 # Directorio de archivos fuente y objetos
 SRC_DIR = src
