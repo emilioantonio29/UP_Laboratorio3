@@ -6,6 +6,6 @@
 #define SUMA_FOR 10
 #define HASTA_FOR 11
 #define CADENA_LARGO 5
-#define NOMBRE_TEXTO "panel.txt"
+#define NOMBRE_TEXTO "../panel.txt"
 #define MAX_LINE_LENGTH 100
 #define ITERATION 0
