@@ -3,7 +3,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <unistd.h>
-#include "../headers/key.h"
+#include "./headers/key.h"
 
 
 key_t creo_clave(int r_clave)

@@ -1,8 +1,30 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> 
-#include "../headers/control.h"
-#include "../headers/globals.h"
+#include "./headers/file.h"
+#include "./headers/globals.h"
+
+void escribirPaneles() {
+    FILE *archivo;
+
+    // Abrir el archivo en modo escritura ("w")
+    archivo = fopen(NOMBRE_TEXTO, "w");
+
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        return;
+    }
+
+    // Escribir en el archivo las líneas deseadas
+    fprintf(archivo, "panel1\n");
+    fprintf(archivo, "panel2\n");
+    fprintf(archivo, "panel3");
+
+    // Cerrar el archivo
+    fclose(archivo);
+
+    printf("El archivo 'panel.txt' ha sido creado y escrito exitosamente.\n");
+}
 
 void leerArchivo(char *array[]) {
     int i; 

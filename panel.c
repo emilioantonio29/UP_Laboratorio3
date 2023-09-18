@@ -5,12 +5,14 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdbool.h>
-#include "../headers/globals.h"
-#include "../headers/key.h"
-#include "../headers/semaforo.h"
-#include "../headers/control.h"
+#include "./headers/globals.h"
+#include "./headers/key.h"
+#include "./headers/semaforo.h"
+#include "./headers/file.h"
+#include "./headers/panel.h"
 
-int main(int argc, char *argv[]) {
+int panel(int numeroPanel) {
+
     int numero;
     int i; 
     int id_semaforo;
@@ -19,14 +21,8 @@ int main(int argc, char *argv[]) {
     char *array[3];
     int firstRound = 1;    
 
-    // Verificar si se proporciona un argumento (número)
-    if (argc != 2) {
-        printf("Uso: %s <numero>\n", argv[0]);
-        return 1;
-    }
-
     // Convertir el argumento en un número entero
-    numero = atoi(argv[1]);
+    numero = numeroPanel;
 
     // Verificar si el número está en el rango de 1 a 3
     if (numero < 1 || numero > 3) {

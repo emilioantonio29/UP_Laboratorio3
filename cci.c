@@ -4,12 +4,13 @@
 #include <sys/sem.h>
 #include <unistd.h>
 #include <string.h>
-#include "../headers/globals.h"
-#include "../headers/key.h"
-#include "../headers/semaforo.h"
-#include "../headers/control.h"
+#include "./headers/globals.h"
+#include "./headers/key.h"
+#include "./headers/semaforo.h"
+#include "./headers/file.h"
+#include "./headers/cci.h"
 
-int main() {
+int cci() {
 
     int numero;
     int numeroPanel;
